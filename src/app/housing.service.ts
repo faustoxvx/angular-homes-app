@@ -15,10 +15,11 @@ export class HousingService {
     return (await data.json()) ?? [];
   }
 
-  getHousingLocationById(id: number): HousingLocation | undefined {
-    return this.housingLocationList.find(
-      (housingLocationList) => housingLocationList.id === id
-    );
+  async getHousingLocationById(
+    id: Number
+  ): Promise<HousingLocation | undefined> {
+    const data = await fetch(`${this.url}/${id}`);
+    return (await data.json()) ?? {};
   }
 
   submitApplication(firstName: string, lastName: string, email: string) {
